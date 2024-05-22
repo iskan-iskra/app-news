@@ -1,30 +1,23 @@
+<script setup lang="ts">
+import { RouterPath } from "@/const";
+import { topHeadlinesService } from "@/api";
+import { onMounted, ref } from "vue";
+import { TiTopHeadlinesResponse } from "@/types";
+const testResult = ref<TiTopHeadlinesResponse>();
+onMounted(async () => {
+  testResult.value = await topHeadlinesService.getList({ country: "ru" });
+});
+</script>
+
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link :to="RouterPath.MAIN">Home</router-link> |
+    <router-link :to="RouterPath.NEWS_LIST">News list</router-link> |
+    <router-link :to="RouterPath.ABOUT">About</router-link> |
   </nav>
   <router-view />
+
+  <pre>{{ testResult }}</pre>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

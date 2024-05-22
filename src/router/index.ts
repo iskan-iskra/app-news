@@ -1,20 +1,44 @@
+import { RouterName, RouterPath } from "@/const";
+import { ErrorPage, AboutPage, MainPage, NewsListPage } from "@/views";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
-    name: "home",
-    component: HomeView,
+    name: RouterName.MAIN,
+    path: RouterPath.MAIN,
+    meta: {
+      title: "News - today",
+    },
+    component: MainPage,
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    name: RouterName.NEWS_LIST,
+    path: RouterPath.NEWS_LIST,
+    meta: {
+      title: "News - list",
+    },
+    component: NewsListPage,
+  },
+  {
+    name: RouterName.ABOUT,
+    path: RouterPath.ABOUT,
+    meta: {
+      title: "News - about us",
+    },
+    component: AboutPage,
+  },
+  {
+    name: RouterName.ERROR,
+    path: RouterPath.ERROR,
+    meta: {
+      title: "News - not found",
+    },
+    component: ErrorPage,
+  },
+
+  {
+    path: "/:catchAll(.*)",
+    redirect: (to) => ({ name: RouterName.ERROR }),
   },
 ];
 
