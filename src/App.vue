@@ -3,9 +3,17 @@ import { RouterPath } from "@/const";
 import { topHeadlinesService } from "@/api";
 import { onMounted, ref } from "vue";
 import { TiTopHeadlinesResponse } from "@/types";
+import { usePreLoader } from "@/composables";
 const testResult = ref<TiTopHeadlinesResponse>();
+
+usePreLoader();
+
 onMounted(async () => {
-  testResult.value = await topHeadlinesService.getList({ country: "ru" });
+  try {
+    testResult.value = await topHeadlinesService.getList({ country: "ru" });
+  } catch (e) {
+    console.log(e);
+  }
 });
 </script>
 
