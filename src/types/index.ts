@@ -3,3 +3,5 @@ export type {
   TiTopHeadlinesResponse,
   TiTopHeadlinesResponseItem,
 } from "./top-headlines";
+
+export type { TiNavigationList, TiNavigationListInitial } from "./navigation";
