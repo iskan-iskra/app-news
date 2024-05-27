@@ -7,11 +7,7 @@ const { currentRoutePath, routerArray } = useAppNavigation();
 </script>
 
 <template>
-  <v-toolbar
-    tag="header"
-    class="app-header position-sticky top-0"
-    density="comfortable"
-  >
+  <v-app-bar tag="header" class="user-select-none" density="comfortable">
     <v-container>
       <v-row :align="'center'">
         <v-col cols="auto">
@@ -30,18 +26,9 @@ const { currentRoutePath, routerArray } = useAppNavigation();
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="auto">
-          <v-btn icon="mdi-magnify" />
-        </v-col>
-        <v-col cols="auto">
           <v-btn :icon="currentIcon" @click="toggleTheme" />
         </v-col>
       </v-row>
     </v-container>
-  </v-toolbar>
+  </v-app-bar>
 </template>
-
-<style scoped lang="scss">
-.app-header {
-  user-select: none;
-}
-</style>

@@ -7,6 +7,6 @@ const { smAndUp } = useDisplay();
 </script>
 
 <template>
-  <DeskTopNavigation v-if="smAndUp" />
-  <MobileNavigation v-else />
+  <desk-top-navigation v-if="smAndUp" />
+  <mobile-navigation v-else />
 </template>

@@ -1,12 +1,18 @@
-import { ThemeValue, themeStorageKey, defaultTheme } from "@/const";
-import { listOfAvailableTheme, ThemeIcon } from "@/const/theme";
+import {
+  ThemeValue,
+  themeStorageKey,
+  defaultTheme,
+  ThemeIcon,
+  ThemeName,
+  listOfAvailableTheme,
+} from "@/const";
 import { computed, ComputedRef } from "vue";
 import { useTheme } from "vuetify";
 import { VIcon } from "vuetify/lib/components/index.mjs";
 
 interface IThemeHook {
-  currentTheme: ComputedRef<ThemeValue>;
-  currentIcon: ComputedRef<VIcon["icon"] | undefined>;
+  currentTheme: ComputedRef<ThemeName>;
+  currentIcon: ComputedRef<VIcon["icon"]>;
   toggleTheme(): void;
   initTheme(): void;
 }
@@ -36,8 +42,8 @@ export default function (): IThemeHook {
     __setTheme(generatedTheme);
   };
 
-  const currentTheme = computed<ThemeValue>(() =>
-    theme.global.current.value.dark ? ThemeValue.DARK : ThemeValue.LIGHT
+  const currentTheme = computed<ThemeName>(() =>
+    theme.global.current.value.dark ? ThemeName.DARK : ThemeName.LIGHT
   );
 
   const currentIcon = computed<VIcon["icon"]>(() =>

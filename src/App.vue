@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { usePreLoader, useAppTheme } from "@/composables";
-import { Navigation } from "@/components";
-import { onBeforeUnmount, onBeforeMount } from "vue";
+import { usePreLoader, useAppTheme, useMobileVh } from "@/composables";
+import { AppNavigation } from "@/components";
+import { onBeforeMount } from "vue";
 
 usePreLoader();
+useMobileVh();
+
 const { initTheme } = useAppTheme();
+
 onBeforeMount(() => {
   initTheme();
 });
@@ -12,8 +15,8 @@ onBeforeMount(() => {
 
 <template>
   <v-app>
-    <Navigation />
-    <v-main>
+    <app-navigation />
+    <v-main :scrollable="true">
       <router-view v-slot="{ Component }">
         <v-container class="overflow-x-hidden">
           <transition name="route" mode="out-in">
@@ -24,23 +27,3 @@ onBeforeMount(() => {
     </v-main>
   </v-app>
 </template>
-
-<style lang="scss" scoped>
-.route-enter-from {
-  opacity: 0;
-  transform: translateX(100px);
-}
-
-.route-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.route-leave-to {
-  opacity: 0;
-  transform: translateX(-100px);
-}
-
-.route-leave-active {
-  transition: all 0.3s ease-out;
-}
-</style>

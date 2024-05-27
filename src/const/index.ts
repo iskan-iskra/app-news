@@ -1,5 +1,7 @@
 export { RouterName, RouterPath } from "./routes";
 export {
+  ThemeName,
+  ThemeIcon,
   ThemeValue,
   themeStorageKey,
   listOfAvailableTheme,

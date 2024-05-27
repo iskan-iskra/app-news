@@ -5,6 +5,11 @@ export enum ThemeValue {
   LIGHT = "light",
 }
 
+export enum ThemeName {
+  DARK = "dark",
+  LIGHT = "light",
+}
+
 export enum ThemeIcon {
   DARK = "mdi-weather-night",
   LIGHT = "mdi-white-balance-sunny",

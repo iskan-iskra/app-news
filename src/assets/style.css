@@ -1,3 +1,38 @@
 * {
   box-sizing: border-box;
 }
+#app-news {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------ custom helpers START ------ */
+.user-select-none {
+  user-select: none;
+}
+/* ------ custom helpers END ------ */
+
+/* ------ page transition animation START ------ */
+.route-enter-from {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.route-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.route-leave-active {
+  transition: all 0.3s ease-out;
+}
+/* ------ page transition animation END ------ */

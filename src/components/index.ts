@@ -1,1 +1,1 @@
-export { default as Navigation } from "./navigation/NavigationWrapper.vue";
+export { default as AppNavigation } from "./navigation/NavigationWrapper.vue";
