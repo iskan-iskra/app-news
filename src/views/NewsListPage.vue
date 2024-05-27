@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <div>newslist</div>
-    <pre v-if="testResult">{{ testResult }}</pre>
-    <pre v-else>{{ testError }}</pre>
-  </div>
+  <div>newslist</div>
+  <pre v-if="testResult">{{ testResult }}</pre>
+  <pre v-else>{{ testError }}</pre>
 </template>
 
 <script setup lang="ts">
