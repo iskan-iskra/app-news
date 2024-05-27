@@ -1,5 +1,5 @@
-import { ThemeValue, themeStorageKey } from "@/const";
-import { ThemeIcon } from "@/const/theme";
+import { ThemeValue, themeStorageKey, defaultTheme } from "@/const";
+import { listOfAvailableTheme, ThemeIcon } from "@/const/theme";
 import { computed } from "vue";
 import { useTheme } from "vuetify";
 import { VIcon } from "vuetify/lib/components/index.mjs";
@@ -7,11 +7,26 @@ import { VIcon } from "vuetify/lib/components/index.mjs";
 export default function () {
   const theme = useTheme();
 
-  const toggleTheme = () => {
-    theme.global.name.value = theme.global.current.value.dark
-      ? ThemeValue.LIGHT
-      : ThemeValue.DARK;
-    localStorage.setItem(themeStorageKey, theme.global.name.value);
+  const __setTheme = (value: ThemeValue): void => {
+    theme.global.name.value = value;
+    localStorage.setItem(themeStorageKey, value);
+  };
+
+  const __generateThemeByString = (value: string | null): ThemeValue =>
+    !!value && listOfAvailableTheme.includes(value as ThemeValue)
+      ? (value as ThemeValue)
+      : defaultTheme;
+
+  const toggleTheme = (): void => {
+    theme.global.current.value.dark
+      ? __setTheme(ThemeValue.LIGHT)
+      : __setTheme(ThemeValue.DARK);
+  };
+
+  const initTheme = (): void => {
+    const themeInfoFromStorage = localStorage.getItem(themeStorageKey);
+    const generatedTheme = __generateThemeByString(themeInfoFromStorage);
+    __setTheme(generatedTheme);
   };
 
   const currentTheme = computed<ThemeValue>(() =>
@@ -21,11 +36,6 @@ export default function () {
   const currentIcon = computed<VIcon["icon"]>(() =>
     theme.global.current.value.dark ? ThemeIcon.LIGHT : ThemeIcon.DARK
   );
-
-  const initTheme = () => {
-    theme.global.name.value =
-      localStorage.getItem(themeStorageKey) || ThemeValue.LIGHT;
-  };
 
   return {
     toggleTheme,

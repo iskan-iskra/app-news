@@ -1,3 +1,8 @@
 export { RouterName, RouterPath } from "./routes";
-export { ThemeValue, themeStorageKey } from "./theme";
+export {
+  ThemeValue,
+  themeStorageKey,
+  listOfAvailableTheme,
+  defaultTheme,
+} from "./theme";
 export { routesList } from "./navigation";
