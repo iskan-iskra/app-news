@@ -16,12 +16,12 @@ onBeforeMount(() => {
   <v-app>
     <app-navigation />
     <v-main>
-      <router-view v-slot="{ Component }">
-        <v-container class="overflow-x-hidden">
-          <transition name="route" mode="out-in">
+      <router-view v-slot="{ Component, route }">
+        <transition name="route" mode="out-in">
+          <v-container class="overflow-x-hidden" :key="route.path">
             <component :is="Component" />
-          </transition>
-        </v-container>
+          </v-container>
+        </transition>
       </router-view>
     </v-main>
   </v-app>
