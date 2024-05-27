@@ -1,15 +1,6 @@
 * {
   box-sizing: border-box;
 }
-#app-news {
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  height: calc(var(--vh, 1vh) * 100);
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-}
 
 /* ------ custom helpers START ------ */
 .user-select-none {
