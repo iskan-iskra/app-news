@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useAppTheme, useNavigation } from "@/composables";
+import { useAppTheme, useAppNavigation } from "@/composables";
 
 const { toggleTheme, currentTheme, currentIcon } = useAppTheme();
 
-const { currentRoutePath, routerArray } = useNavigation();
+const { currentRoutePath, routerArray } = useAppNavigation();
 </script>
 
 <template>

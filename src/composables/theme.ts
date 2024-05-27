@@ -1,10 +1,17 @@
 import { ThemeValue, themeStorageKey, defaultTheme } from "@/const";
 import { listOfAvailableTheme, ThemeIcon } from "@/const/theme";
-import { computed } from "vue";
+import { computed, ComputedRef } from "vue";
 import { useTheme } from "vuetify";
 import { VIcon } from "vuetify/lib/components/index.mjs";
 
-export default function () {
+interface IThemeHook {
+  currentTheme: ComputedRef<ThemeValue>;
+  currentIcon: ComputedRef<VIcon["icon"] | undefined>;
+  toggleTheme(): void;
+  initTheme(): void;
+}
+
+export default function (): IThemeHook {
   const theme = useTheme();
 
   const __setTheme = (value: ThemeValue): void => {
@@ -38,9 +45,9 @@ export default function () {
   );
 
   return {
-    toggleTheme,
     currentTheme,
     currentIcon,
+    toggleTheme,
     initTheme,
   };
 }

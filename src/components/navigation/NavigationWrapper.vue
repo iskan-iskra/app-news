@@ -3,18 +3,10 @@ import { useDisplay } from "vuetify/lib/framework.mjs";
 import DeskTopNavigation from "./DeskTopNavigation.vue";
 import MobileNavigation from "./MobileNavigation.vue";
 
-const { mobile } = useDisplay();
+const { smAndUp } = useDisplay();
 </script>
 
 <template>
-  <MobileNavigation v-if="mobile" />
-  <DeskTopNavigation v-else />
+  <DeskTopNavigation v-if="smAndUp" />
+  <MobileNavigation v-else />
 </template>
-
-<style lang="scss">
-.test {
-  &__wrapper {
-    width: 100%;
-  }
-}
-</style>

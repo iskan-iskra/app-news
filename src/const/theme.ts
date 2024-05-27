@@ -1,5 +1,3 @@
-import { VIcon } from "vuetify/lib/components/index.mjs";
-
 export const themeStorageKey = "theme";
 
 export enum ThemeValue {

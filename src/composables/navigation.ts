@@ -1,15 +1,21 @@
 import router from "@/router";
 import { RouterPath, routesList } from "@/const";
-import { computed } from "vue";
+import { computed, ComputedRef } from "vue";
 import { TiNavigationList } from "@/types";
 
-export default function () {
-  const currentRoutePathCompare = (path: RouterPath): boolean =>
+interface INavigationHook {
+  currentRoutePath: ComputedRef<string>;
+  routerArray: ComputedRef<TiNavigationList[]>;
+}
+
+export default function (): INavigationHook {
+  const __currentRoutePathCompare = (path: RouterPath): boolean =>
     currentRoutePath.value === path;
 
-  const routerClick = (value: RouterPath) => {
+  const __routerClick = (value: RouterPath): void => {
     router.push({ path: value });
   };
+
   const currentRoutePath = computed<string>(
     () => router.currentRoute.value.path
   );
@@ -17,9 +23,9 @@ export default function () {
   const routerArray = computed<TiNavigationList[]>(() =>
     routesList.map((el) => ({
       ...el,
-      active: currentRoutePathCompare(el.path),
+      active: __currentRoutePathCompare(el.path),
       action() {
-        routerClick(el.path);
+        __routerClick(el.path);
       },
     }))
   );
