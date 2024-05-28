@@ -1,5 +1,7 @@
+import { CountryCodes, CountryCodesTopNews } from "@/const";
+
 export type TiTopHeadlinesParams = Partial<{
-  country: "ru";
+  country: CountryCodesTopNews;
   category: string;
   q: string;
   pageSize: number;

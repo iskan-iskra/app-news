@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
     name: RouterName.MAIN,
     path: RouterPath.MAIN,
     meta: {
-      title: `${mainTitlePart} - today`,
+      title: "today",
     },
     component: MainPage,
   },
@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
     name: RouterName.NEWS_LIST,
     path: RouterPath.NEWS_LIST,
     meta: {
-      title: `${mainTitlePart} - list`,
+      title: "list",
     },
     component: NewsListPage,
   },
@@ -25,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
     name: RouterName.ABOUT,
     path: RouterPath.ABOUT,
     meta: {
-      title: `${mainTitlePart} - about us`,
+      title: "about us",
     },
     component: AboutPage,
   },
@@ -33,7 +33,7 @@ const routes: Array<RouteRecordRaw> = [
     name: RouterName.ERROR,
     path: RouterPath.ERROR,
     meta: {
-      title: `${mainTitlePart} - not found`,
+      title: "not found",
     },
     component: ErrorPage,
   },
@@ -47,8 +47,7 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-  scrollBehavior(to, from, savedPosition) {
-    // always scroll to top
+  scrollBehavior() {
     return { top: 0 };
   },
 });
@@ -58,7 +57,7 @@ router.beforeEach((to, from, next) => {
 
   document.title =
     typeof metaTitle === "string" && metaTitle
-      ? metaTitle
+      ? `${mainTitlePart} - ${metaTitle}`
       : `${mainTitlePart} - app`;
 
   next();
